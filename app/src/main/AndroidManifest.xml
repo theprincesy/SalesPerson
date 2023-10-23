@@ -39,6 +39,10 @@
             android:name=".SalespersonEntryActivity"
             android:exported="true" >
         </activity>
+<!--        <activity-->
+<!--            android:name=".item_layout"-->
+<!--            android:exported="true" >-->
+<!--        </activity>-->
     </application>
 
 </manifest>

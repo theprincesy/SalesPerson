@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -49,16 +50,15 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println(username);
                 JSONObject jsonBody = new JSONObject();
                 try {
-                    jsonBody.put("title", username);
-                    jsonBody.put("body", password);
-                    jsonBody.put("userId", 1);
+                    jsonBody.put("username", username);
+                    jsonBody.put("password", password);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
 
                 OkHttpClient client = new OkHttpClient();
-                String url = "https://jsonplaceholder.typicode.com/posts"; // Replace with your API endpoint URL
+                String url = "https://abdalhamid.pythonanywhere.com/api/login/"; // Replace with your API endpoint URL
 
                 // Create a JSON request body (you can use other types of bodies, e.g., FormBody)
                 MediaType JSON = MediaType.parse("application/json; charset=utf-8");
@@ -79,9 +79,17 @@ public class MainActivity extends AppCompatActivity {
                         } else {
                             // Handle the API call failure (e.g., network error or non-2xx HTTP response)
                             System.err.println("long");
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(MainActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
+//                        Toast.makeText(MainActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
                         // Handle the exception
                     }
                 }).start();

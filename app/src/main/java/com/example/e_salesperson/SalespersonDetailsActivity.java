@@ -102,10 +102,10 @@ public class SalespersonDetailsActivity extends AppCompatActivity {
                     editText.setBackgroundColor(Color.BLUE);
                     System.out.println("Enter If");
 
-                } else {
+                }else {
                     // Reset the text input field's text color to the default color
-                    editText.setBackgroundColor(Color.WHITE);
                 }
+
             }
 
             @Override

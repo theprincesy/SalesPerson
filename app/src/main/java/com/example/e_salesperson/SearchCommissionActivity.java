@@ -3,6 +3,7 @@ package com.example.e_salesperson;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -46,21 +47,8 @@ public class SearchCommissionActivity extends AppCompatActivity{
         setContentView(R.layout.activity_search_commissions);
         recyclerView = findViewById(R.id.recyclerView);
 
-        SalespersonInfo saidAhmadInfo = new SalespersonInfo(
-                "Said Ahmad",
-                9, // Month
-                2023, // Year
-                new Date(2023 - 1900, 0, 10), // Registration Date (year - 1900, month, day)
-                85000, // Southern Region Commission
-                9000, // Coastal Region Commission
-                0, // Northern Region Commission
-                0, // Eastern Region Commission
-                13500, // Lebanon Commission
-                107500 // Monthly Commission
-        );
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        data = new ArrayList<>();
-        data.add(saidAhmadInfo);
+
+
 
 
 
@@ -70,12 +58,30 @@ public class SearchCommissionActivity extends AppCompatActivity{
 
         Button button1 = findViewById(R.id.searchButton);
         button8 = findViewById(R.id.button8);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         button8.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onClick(View v) {
                 // Start an activity for the first button's functionality.
 
 //                notifyDataSetChanged(); // Refresh the R
+                List<String> data = new ArrayList<String>();
+                data.add("Salesperson Name:");data.add("Saeed Ahmad");
+                data.add("Month");data.add("9");
+                data.add("Year:");data.add("2023");
+                data.add("Southern region: ");data.add("0");
+                data.add("Northern Region:");data.add("1500000");
+                data.add("Coastal region: ");data.add("0");
+
+                data.add("Eastern Region:");data.add("0");
+                data.add("Lebanon: ");data.add("0");
+                data.add("Monthly commission:");data.add("85000");
+                recyclerView.setLayoutManager(new GridLayoutManager(SearchCommissionActivity.this, 2));
+//                Adapter adapter = (Adapter) recyclerView.getAdapter();
+
+                Adapter adapter = new Adapter(data);
+                recyclerView.setAdapter(adapter);
             }
         });
 
